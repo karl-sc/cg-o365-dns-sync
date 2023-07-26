@@ -89,13 +89,10 @@ def logout(sdk):
 
 ##########MAIN FUNCTION#############
 def go(sdk, CLIARGS):
-    ####CODE GOES BELOW HERE#########
     dns_profile_name = CLIARGS['profile']
     service_role = CLIARGS['service_role']
     dns_server = CLIARGS['dns']
     edl_url = CLIARGS['url']
-    #CLIARGS['profile'] = "pglabdns"
-    #CLIARGS['service_role'] = "br_lan_role"
     resp = sdk.get.tenants()
     if resp.cgx_status:
         tenant_name = resp.cgx_content.get("name", None)
@@ -123,11 +120,8 @@ def go(sdk, CLIARGS):
     
     put_dns_profile = populate_dns_profile_breakout(dns_profile=dns_profile, fqdn_list=list_of_domains, dns_primary=dns_server, service_role_id=service_role_id)
     result = sdk.put.dnsserviceprofiles(dns_profile['id'], put_dns_profile)
-    print("Put Complete. STATUS:",result.cgx_status)
-    ####CODE GOES ABOVE HERE#########
 
-def validate_dns_profile(edl_url=None):
-    pass
+    print("Put Complete. STATUS:",result.cgx_status)
 
 def retrieve_edl_to_list(edl_url):
     response = requests.get(edl_url)
@@ -142,9 +136,6 @@ def get_dns_service_profile(profile_name, sdk):
             answer = sdk.get.dnsserviceprofiles(dnsserviceprofile_id=dns_profile['id']).cgx_content
             return answer
     return answer
-    
-def edl_fqdn_filter(edl_list=None):
-    pass
 
 def populate_dns_profile_breakout(dns_profile=None, fqdn_list=None, dns_primary=None, service_role_id=None):
     dns_svr_fwd_config = dns_profile['dns_forward_config']['dns_servers']
