@@ -2,7 +2,8 @@
 Synchronized PrismaSDWAN DNS Profile with O365 domains from EDL
 
 
-```Prisma SDWAN DNS Sync
+```
+Prisma SDWAN DNS Sync
 ---------------------------------------
 Synchronizes a DNS Profile to split-DNS to local public DNS resolvers against FQDN's in an EDL.
 Generally used to point Office365 FQDN's (retrieved from an EDL) to point to local 8.8.8.8 resolvers
